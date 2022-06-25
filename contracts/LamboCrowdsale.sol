@@ -55,7 +55,14 @@ contract LamboCrowdsale {
         msg.sender.transfer(commission);
     }
 
-
+/*    //General withdraw fxn; amount must be @least 1000000000000000 wei
+    function withdraw(uint amount) public returns (bool) {
+        require(amount < address(this).balance, "Withdrawal cannot be equal to Total Contract Balance");
+        balances[msg.sender] = 0;
+        msg.sender.transfer(amount);
+        return true;
+    }
+*/
     function killContract(address payable designatedAddress) public onlyOwner {
         selfdestruct(designatedAddress);
     }
