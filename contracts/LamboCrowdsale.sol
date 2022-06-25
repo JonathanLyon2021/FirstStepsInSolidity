@@ -24,7 +24,7 @@ contract LamboCrowdsale {
     }
 
     modifier onlyOwner() {
-        require(contractOwner == msg.sender, "Only Contract Owner is authorized");
+        require(contractOwner == msg.sender, "Only the Contract Owner has authorization");
         _;
     }
 
@@ -49,7 +49,7 @@ contract LamboCrowdsale {
 
     function getCommission() public onlyOwner {
         uint commission = (address(this).balance / 5);
-        require(address(this).balance >= commission, "Sender does not have enough balance.");
+        require(address(this).balance >= commission, "Sender's balance is not enough!");
         balances[msg.sender] = 0;
         emit MoneyReceived(msg.sender, commission);
         msg.sender.transfer(commission);
@@ -57,7 +57,7 @@ contract LamboCrowdsale {
 
 /*    //General withdraw fxn; amount must be @least 1000000000000000 wei
     function withdraw(uint amount) public returns (bool) {
-        require(amount < address(this).balance, "Withdrawal cannot be equal to Total Contract Balance");
+        require(amount < address(this).balance, "Withdrawal can not be equal to Total Contract Balance");
         balances[msg.sender] = 0;
         msg.sender.transfer(amount);
         return true;
