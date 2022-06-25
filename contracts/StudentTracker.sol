@@ -30,13 +30,13 @@ contract StudentTracker {
 
     constructor() public {
         require(msg.sender == 0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c, "Must be Instructor of the Class");
-        Instructor[msg.sender] = "Bethany";
+        Instructor[msg.sender] = "Jonathan";
         Teacher[msg.sender] = true;
     }
 
     modifier onlyInstructor() {
 
-       require(Teacher[msg.sender], "Only Instructor is authorized to make changes");
+       require(Teacher[msg.sender], "Only the Instructor is authorized to make changes");
         _;
     }
 
@@ -175,7 +175,7 @@ contract StudentTracker {
 
     function getClass() public view returns(string memory) {
         require(gasleft()>20,
-        "Not enough gas left");
+        "Not enough gas");
         string memory rString;
 
         for(uint i = 0; i < studentIndex.length; i++) {
